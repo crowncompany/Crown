@@ -1,1 +1,99 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/crowncompany/OrionKeySystem/refs/heads/main/UI')))()
 
+local Window = OrionLib:MakeWindow({Name = "Key System by Crown Cheats (DEV / ashy1828)", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+    Name = "Key System",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local correctKey = "062310" -- Set your desired key here
+local keyFile = "OrionTest/KeySave.txt"
+local userInputKey = ""
+
+-- Check if key file exists and read stored key
+if pcall(function() readfile(keyFile) end) then
+    userInputKey = readfile(keyFile)
+    if userInputKey == correctKey then
+        print("Access Granted Automatically!")
+        OrionLib:MakeNotification({
+            Name = "Success",
+            Content = "Correct Key Loaded! Access Granted.",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+        OrionLib:Destroy()
+        wait(2)
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/crowncompany/ScriptLibrary/refs/heads/main/Crown')))() -- Place Your Script Here
+        return
+    end
+end
+
+Tab:AddTextbox({
+    Name = "Put Key Here",
+    Default = "Put Key Here",
+    TextDisappear = true,
+    Callback = function(Value)
+        userInputKey = Value
+    end    
+})
+
+Tab:AddButton({
+    Name = "Submit Key",
+    Callback = function()
+        if userInputKey == correctKey then
+            print("Access Granted!")
+            OrionLib:MakeNotification({
+                Name = "Success",
+                Content = "Correct Key! Access Granted.",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+            
+            writefile(keyFile, userInputKey) -- Save key to file
+            OrionLib:Destroy()
+            
+            wait(2)
+            loadstring(game:HttpGet(('https://raw.githubusercontent.com/crowncompany/ScriptLibrary/refs/heads/main/Crown')))() -- Place Your Script Here
+        else
+            print("Access Denied!")
+            OrionLib:MakeNotification({
+                Name = "Error",
+                Content = "Incorrect Key! Try Again.",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        end
+    end    
+})
+
+Tab:AddButton({
+    Name = "Get Key Link",
+    Callback = function()
+        setclipboard("https://discord.gg/ptNRwnWH") -- Place your Key link here
+        OrionLib:MakeNotification({
+            Name = "Clipboard",
+            Content = "Key copied to clipboard!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end    
+})
+
+Tab:AddButton({
+    Name = "Discord Is Key Link",
+    Callback = function()
+        setclipboard("https://discord.gg/ptNRwnWH") -- Place your discord link here
+        OrionLib:MakeNotification({
+            Name = "Clipboard",
+            Content = "Key copied to clipboard!",
+            Image = "rbxassetid://4483345998",
+            Time = 5
+        })
+    end    
+})
+
+
+
+      
