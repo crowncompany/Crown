@@ -8,7 +8,7 @@ local Tab = Window:MakeTab({
     PremiumOnly = false
 })
 
-local correctKey = "062310, 0623" -- Set your desired key here
+local correctKey = "062310", "0623", "depickle" -- Set your desired key here
 local keyFile = "OrionTest/KeySave.txt"
 local userInputKey = ""
 
